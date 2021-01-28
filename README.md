@@ -14,7 +14,7 @@ Repo: [github.com/Shelby219/portfolio_v3_react](https://github.com/Shelby219/por
 
 ### Description
 
-Version 3 of my portfolio website created using React. I created a version two using plain HTML, CSS/SASS, and JavaScript, however I wanted to recreate my portfolio with React. 
+Version 3 of my portfolio website being created using React. Version two was created using plain HTML, CSS/SASS, and JavaScript, however I wanted to recreate an alternative version using React. 
 
 -----
 

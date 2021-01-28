@@ -1,11 +1,12 @@
 import React, {Link} from 'react';
-
+import {Background} from './styles.js';
 
 function Home() {
   return (
-    <div>
-    Home
-    </div>
+
+    <Background>
+        Home
+    </Background>
   );
 }
 
