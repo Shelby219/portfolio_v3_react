@@ -1,17 +1,24 @@
 import styled from "styled-components"
 
+export const AppContainer = styled.div `
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+
+`
 export const Logo = styled.div `
-  font-family: 'Quicksand', sans-serif;
-  background-color: #b7edc5;
-  color: #000000;
+  color: #ffffff;
   fontWeight: 600;
   text-align: center;
-  padding: 10px;
-  margin: 15px;
-  width: 50px;
-  clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+  padding: 2px;
+  margin: 10px;
+  width: 150px;
+  border-bottom: 1px solid #ffffff;
+    @media only screen and  (max-width:600px) {
+      align-self: center;
+    }
 `
 export const Background = styled.div `
-    background-color: #b7edc5;
+    background-color: #307060;
     height: 100vh;
 `

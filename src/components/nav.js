@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import MenuIcon from "@material-ui/icons/Menu";
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import React, { useState, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -37,35 +38,63 @@ const headersData = [
 
 const useStyles = makeStyles(() => ({
   header: {
-    fontFamily: "Quicksand, sans-serif",
-    backgroundColor: "#fcfcfc",
-    color: "#000000",
+    backgroundColor: "#307060",
+    color: "#ffffff",
     boxShadow: "none",
-    paddingRight: "79px",
-    paddingLeft: "118px",
     "@media (max-width: 900px)": {
       paddingLeft: 0,
     },
   },
   menuButton: {
-    fontFamily: "Quicksand, sans-serif",
-    fontWeight: 700,
-    size: "18px",
+    color: "#ffffff",
+    textTransform: "capitalize",
+    fontWeight: 400,
+    size: "25px",
     marginLeft: "38px",
+     "&:hover": {
+       color: "#307060",
+       backgroundColor: "#fcfcfc",
+     },
+  },
+  menuDraws: {
+    color: "#000000",
+    width: "100%",
+    borderBottom: "0.05px solid #E4E4E4",
+    fontWeight: 300,
+    height: "50px",
   },
   toolbar: {
     display: "flex",
     justifyContent: "space-between",
-  fontFamily: "Quicksand, sans-serif",
+    fontFamily: "Quicksand, sans-serif",
+  },
+  mobiletoolbar: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  toolMenu: {
+    marginLeft: "auto",
   },
   drawerContainer: {
-    fontFamily: "Quicksand, sans-serif",
-    padding: "20px 30px",
+    backgroundColor: "white",
+    paddingTop: "20px",
+    height: "100%",
+    width: "300px",
+    "@media (max-width: 600px)": {
+       width: "250px",
+    },
   },
 }));
 
 function Nav() {
-    const { header, logo, menuButton, toolbar, drawerContainer } = useStyles();
+    const { header,
+    menuButton,
+    toolbar,
+    drawerContainer,
+    menuDraws,
+    toolMenu ,
+    mobiletoolbar} = useStyles();
 
     const [state, setState] = useState({
       mobileView: false,
@@ -89,12 +118,11 @@ function Nav() {
       const displayDesktop = () => {
         return (
           <Toolbar className={toolbar}>
-            {shelbyLogo}
+            {SELOGO}
             <div>{getMenuButtons()}</div>
           </Toolbar>
         );
       };
-
 
 
       const displayMobile = () => {
@@ -104,8 +132,22 @@ function Nav() {
           setState((prevState) => ({ ...prevState, drawerOpen: false }));
 
         return (
-          <Toolbar>
+          <Toolbar className={mobiletoolbar} >
+            <Drawer
+              {...{
+                anchor: "right",
+                open: drawerOpen,
+                onClose: handleDrawerClose,
+              }}
+            >
+              <div className={drawerContainer}>
+                {getDrawerChoices()}
+              </div>
+            </Drawer>
+
+            <div>{SELOGO}</div>
             <IconButton
+             className={toolMenu}
               {...{
                 edge: "start",
                 color: "inherit",
@@ -116,26 +158,14 @@ function Nav() {
             >
               <MenuIcon />
             </IconButton>
-
-            <Drawer
-              {...{
-                anchor: "left",
-                open: drawerOpen,
-                onClose: handleDrawerClose,
-              }}
-            >
-              <div className={drawerContainer}>{getDrawerChoices()}</div>
-            </Drawer>
-
-            <div>{shelbyLogo}</div>
           </Toolbar>
         );
       };
 
-
       const getDrawerChoices = () => {
         return headersData.map(({ label, href }) => {
           return (
+
             <Link
               {...{
                 component: RouterLink,
@@ -145,16 +175,17 @@ function Nav() {
                 key: label,
               }}
             >
-              <MenuItem>{label}</MenuItem>
-            </Link>
+              <MenuItem
+              className={menuDraws} >{label} <ArrowForwardIosIcon  style={{marginLeft: "auto", color: "#307060" }} /> </MenuItem>
+             </Link>
           );
         });
       };
 
-      const shelbyLogo = (
+      const SELOGO = (
         <Typography variant="h6" component="h1" >
           <Logo>
-              SE
+              Shelby El-rassi
           </Logo>
         </Typography>
       );
@@ -185,7 +216,6 @@ function Nav() {
     </header>
   );
 }
-
 
 
 

@@ -3,12 +3,13 @@ import Footer from './components/footer.js';
 import Home from './components/home.js';
 import Projects from './components/projects.js';
 import { BrowserRouter as Router } from "react-router-dom";
+import {AppContainer} from './components/styles.js';
 import "./App.css";
 
 function App() {
   return (
 
-    <div class="App">
+    <AppContainer>
      <Router>
           <Nav/>
           <Home/>
@@ -16,7 +17,7 @@ function App() {
           React app
           <Footer/>
       </Router>
-    </div>
+    </AppContainer>
   );
 }
 
